@@ -6,3 +6,4 @@ variable "rds_readonly" { default = "0" }
 variable "cw_readonly" { default = "0" }
 variable "cw_update" { default = "0" }
 variable "r53_update" { default = "0" }
+variable "redshift_read" { default = "0" }
