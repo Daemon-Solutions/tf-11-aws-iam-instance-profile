@@ -240,3 +240,47 @@ resource "aws_iam_role_policy" "s3_write" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "sns_allowall" {
+  name = "sns_allowall"
+
+  count = "${var.sns_allowall}"
+  role = "${aws_iam_role.default_role.id}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "sns:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "sqs_allowall" {
+  name = "sqs_allowall"
+
+  count = "${var.sqs_allowall}"
+  role = "${aws_iam_role.default_role.id}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "sqs:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
