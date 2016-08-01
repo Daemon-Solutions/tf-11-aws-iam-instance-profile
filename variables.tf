@@ -10,3 +10,4 @@ variable "redshift_read" { default = "0" }
 variable "s3_write_buckets" { default = "" }
 variable "sns_allowall" { default = "0" }
 variable "sqs_allowall" { default = "0" }
+variable "ssm_managed" { default = "0" }
