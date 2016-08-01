@@ -284,3 +284,12 @@ resource "aws_iam_role_policy" "sqs_allowall" {
 }
 EOF
 }
+
+resource "aws_iam_policy_attachment" "ssm_managed" {
+  name       = "ssm_managed_attachment"
+
+  count      = "${var.ssm_managed}"
+  roles      = ["${aws_iam_role.default_role.id}"]
+
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+}
