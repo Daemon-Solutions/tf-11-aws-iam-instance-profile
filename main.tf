@@ -1,6 +1,11 @@
 resource "aws_iam_instance_profile" "instance_profile" {
   name = "${var.name}-profile"
   roles = ["${aws_iam_role.default_role.name}"]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
 }
 
 resource "aws_iam_role" "default_role" {
@@ -20,6 +25,10 @@ resource "aws_iam_role" "default_role" {
   ]
 }
 EOF
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_iam_role_policy" "ec2_describe" {
@@ -27,6 +36,10 @@ resource "aws_iam_role_policy" "ec2_describe" {
 
   count = "${var.ec2_describe}"
   role = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   policy = <<EOF
 {
@@ -50,6 +63,10 @@ resource "aws_iam_role_policy" "ec2_attach" {
   count = "${var.ec2_attach}"
   role = "${aws_iam_role.default_role.id}"
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -71,6 +88,10 @@ resource "aws_iam_role_policy" "s3_readonly" {
 
   count = "${var.s3_readonly}"
   role = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   policy = <<EOF
 {
@@ -95,6 +116,10 @@ resource "aws_iam_role_policy" "rds_readonly" {
   count = "${var.rds_readonly}"
   role = "${aws_iam_role.default_role.id}"
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -117,6 +142,10 @@ resource "aws_iam_role_policy" "cloudwatch_readonly" {
 
   count = "${var.cw_readonly}"
   role = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   policy = <<EOF
 {
@@ -141,6 +170,10 @@ resource "aws_iam_role_policy" "cloudwatch_update" {
   count = "${var.cw_update}"
   role = "${aws_iam_role.default_role.id}"
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -162,6 +195,10 @@ resource "aws_iam_role_policy" "r53_update" {
 
   count = "${var.r53_update}"
   role = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   policy = <<EOF
 {
@@ -186,6 +223,10 @@ resource "aws_iam_role_policy" "redshift_read" {
 
   count = "${var.redshift_read}"
   role = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   policy = <<EOF
 {
@@ -222,6 +263,10 @@ resource "aws_iam_role_policy" "s3_write" {
   count = "${length(split(",", var.s3_write_buckets))}"
   role  = "${aws_iam_role.default_role.id}"
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -247,6 +292,10 @@ resource "aws_iam_role_policy" "sns_allowall" {
   count = "${var.sns_allowall}"
   role = "${aws_iam_role.default_role.id}"
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -268,6 +317,10 @@ resource "aws_iam_role_policy" "sqs_allowall" {
 
   count = "${var.sqs_allowall}"
   role = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   policy = <<EOF
 {
@@ -291,5 +344,9 @@ resource "aws_iam_policy_attachment" "ssm_managed" {
   count      = "${var.ssm_managed}"
   roles      = ["${aws_iam_role.default_role.id}"]
 
+  lifecycle {
+    create_before_destroy = true
+  }
+  
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
 }
