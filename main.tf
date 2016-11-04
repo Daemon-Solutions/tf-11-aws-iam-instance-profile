@@ -260,7 +260,7 @@ EOF
 resource "aws_iam_role_policy" "s3_write" {
   name = "s3_write"
 
-  count = "${length(split(",", var.s3_write_buckets))}"
+  count = "${length(var.s3_write_buckets)}"
   role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
