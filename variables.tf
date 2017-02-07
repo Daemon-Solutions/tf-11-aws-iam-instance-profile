@@ -12,4 +12,4 @@ variable "sns_allowall" { default = "0" }
 variable "sqs_allowall" { default = "0" }
 variable "ssm_managed" { default = "0" }
 variable "kms_decrypt" { default = "0" }
-variable "kms_arns" { default = "" }
+variable "kms_decrypt_arns" { default = "" }

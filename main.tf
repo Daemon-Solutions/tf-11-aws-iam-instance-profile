@@ -358,7 +358,7 @@ data "aws_iam_policy_document" "kms_read_policy" {
       "kms:DescribeKey"
     ]
     effect = "Allow"
-    resources = ["${split(",", var.kms_arns)}"]
+    resources = ["${split(",", var.kms_decrypt_arns)}"]
   }
 }
 
