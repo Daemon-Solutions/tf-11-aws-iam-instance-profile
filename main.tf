@@ -1,3 +1,8 @@
+# We use features that requires version 0.8.0 or higher
+terraform {
+  required_version = ">= 0.8.0"
+}
+
 resource "aws_iam_instance_profile" "instance_profile" {
   name = "${var.name}-profile"
   roles = ["${aws_iam_role.default_role.name}"]
