@@ -1,3 +1,8 @@
+# We use features that requires version 0.8.0 or higher
+terraform {
+  required_version = ">= 0.8.0"
+}
+
 resource "aws_iam_instance_profile" "instance_profile" {
   name = "${var.name}-profile"
   roles = ["${aws_iam_role.default_role.name}"]
@@ -260,7 +265,7 @@ EOF
 resource "aws_iam_role_policy" "s3_write" {
   name = "s3_write-${element(split(",", var.s3_write_buckets), count.index)}"
 
-  count = "${length(split(",", var.s3_write_buckets))}"
+  count = "${var.s3_write_buckets != "" ? length(split(",", var.s3_write_buckets)) : 0}"
   role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
