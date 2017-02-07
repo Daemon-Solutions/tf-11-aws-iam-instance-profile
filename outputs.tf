@@ -25,3 +25,7 @@ output "profile_roles" {
 output "profile_unique_id" {
   value = "${aws_iam_instance_profile.instance_profile.unique_id}"
 }
+
+output "role_arn" {
+   value = "${aws_iam_role.default_role.arn}"
+}
