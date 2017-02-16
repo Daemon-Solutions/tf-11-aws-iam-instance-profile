@@ -63,3 +63,7 @@ variable "elasticache_readonly" {
 variable "packer_access" {
   default = "0"
 }
+
+variable "ec2_ebs_attach" {
+  default = "0"
+}
