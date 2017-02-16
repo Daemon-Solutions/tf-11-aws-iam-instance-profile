@@ -59,3 +59,7 @@ variable "kms_decrypt_arns" {
 variable "elasticache_readonly" {
   default = "0"
 }
+
+variable "packer_access" {
+  default = "0"
+}
