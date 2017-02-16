@@ -22,7 +22,7 @@ module "iam_profile_jenkins" {
   s3_write_buckets      = "tmc-nonprod-repo,tmc-prod-repo"
   kms_decrypt           = "1"
   kms_decrypt_arns      = "${aws_kms_key.puppet.arn}"
-
+  elasticache_readonly  = "0"
 }
 ```
 
@@ -42,6 +42,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `sqs_allowall`
 * `ssm_managed`
 * `kms_decrypt`
+* `elasticache_readonly`
 
 With exception of
 
