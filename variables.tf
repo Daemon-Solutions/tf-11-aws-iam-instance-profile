@@ -55,4 +55,7 @@ variable "kms_decrypt" {
 variable "kms_decrypt_arns" {
   default = ""
 }
-variable "elasticache_readonly" { default = "0" }
+
+variable "elasticache_readonly" {
+  default = "0"
+}

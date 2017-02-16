@@ -1,8 +1,7 @@
 resource "aws_iam_role_policy" "elasticache_readonly" {
-  name = "elasticache_readonly"
-
+  name  = "elasticache_readonly"
   count = "${var.elasticache_readonly}"
-  role = "${aws_iam_role.default_role.id}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true
@@ -24,4 +23,3 @@ resource "aws_iam_role_policy" "elasticache_readonly" {
 }
 EOF
 }
-
