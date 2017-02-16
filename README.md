@@ -26,6 +26,7 @@ module "iam_profile_jenkins" {
   packer_access         = "0"
   ec2_ebs_attach        = "0"
   ec2_eni_attach        = "0"
+  kinesis_streams       = "0"
 }
 ```
 
@@ -49,6 +50,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `packer_access`
 * `ec2_ebs_attach`
 * `ec2_eni_attach`
+* `kinesis_streams`
 
 With exception of
 

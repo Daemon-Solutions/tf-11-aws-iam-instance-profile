@@ -71,3 +71,7 @@ variable "ec2_ebs_attach" {
 variable "ec2_eni_attach" {
   default = "0"
 }
+
+variable "kinesis_streams" {
+  default = "0"
+}
