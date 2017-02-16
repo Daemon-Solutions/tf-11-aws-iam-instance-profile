@@ -1,8 +1,7 @@
 resource "aws_iam_role_policy" "sns_allowall" {
-  name = "sns_allowall"
-
+  name  = "sns_allowall"
   count = "${var.sns_allowall}"
-  role = "${aws_iam_role.default_role.id}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true

@@ -1,8 +1,7 @@
 resource "aws_iam_role_policy" "ec2_describe" {
-  name = "ec2_describe"
-
+  name  = "ec2_describe"
   count = "${var.ec2_describe}"
-  role = "${aws_iam_role.default_role.id}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true
@@ -25,10 +24,9 @@ EOF
 }
 
 resource "aws_iam_role_policy" "ec2_attach" {
-  name = "ec2_attach"
-
+  name  = "ec2_attach"
   count = "${var.ec2_attach}"
-  role = "${aws_iam_role.default_role.id}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true

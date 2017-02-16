@@ -1,8 +1,7 @@
 resource "aws_iam_role_policy" "s3_readonly" {
-  name = "s3_readonly"
-
+  name  = "s3_readonly"
   count = "${var.s3_readonly}"
-  role = "${aws_iam_role.default_role.id}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true
@@ -26,8 +25,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "s3_write" {
-  name = "s3_write-${element(split(",", var.s3_write_buckets), count.index)}"
-
+  name  = "s3_write-${element(split(",", var.s3_write_buckets), count.index)}"
   count = "${var.s3_write_buckets != "" ? length(split(",", var.s3_write_buckets)) : 0}"
   role  = "${aws_iam_role.default_role.id}"
 

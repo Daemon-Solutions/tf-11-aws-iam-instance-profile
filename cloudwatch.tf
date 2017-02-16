@@ -1,8 +1,7 @@
 resource "aws_iam_role_policy" "cloudwatch_readonly" {
-  name = "cloudwatch_readonly"
-
+  name  = "cloudwatch_readonly"
   count = "${var.cw_readonly}"
-  role = "${aws_iam_role.default_role.id}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true
@@ -26,10 +25,9 @@ EOF
 }
 
 resource "aws_iam_role_policy" "cloudwatch_update" {
-  name = "cloudwatch_update"
-
+  name  = "cloudwatch_update"
   count = "${var.cw_update}"
-  role = "${aws_iam_role.default_role.id}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true

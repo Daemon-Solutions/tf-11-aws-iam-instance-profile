@@ -1,8 +1,7 @@
 resource "aws_iam_role_policy" "redshift_read" {
-  name = "redshift_read"
-
+  name  = "redshift_read"
   count = "${var.redshift_read}"
-  role = "${aws_iam_role.default_role.id}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true
