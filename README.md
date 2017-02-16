@@ -25,6 +25,7 @@ module "iam_profile_jenkins" {
   elasticache_readonly  = "0"
   packer_access         = "0"
   ec2_ebs_attach        = "0"
+  ec2_eni_attach        = "0"
 }
 ```
 
@@ -47,6 +48,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `elasticache_readonly`
 * `packer_access`
 * `ec2_ebs_attach`
+* `ec2_eni_attach`
 
 With exception of
 

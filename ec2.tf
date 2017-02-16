@@ -73,3 +73,31 @@ resource "aws_iam_role_policy" "ec2_ebs_attach" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "ec2_eni_attach" {
+  name  = "ec2_eni_attach"
+  count = "${var.ec2_eni_attach}"
+  role  = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeNetworkInterfaceAttribute",
+        "ec2:AttachNetworkInterface",
+        "ec2:ModifyNetworkInterfaceAttribute"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
