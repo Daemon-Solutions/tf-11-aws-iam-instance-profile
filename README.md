@@ -24,7 +24,8 @@ module "iam_profile_jenkins" {
   kms_decrypt_arns      = "${aws_kms_key.puppet.arn}"
   elasticache_readonly  = "0"
   packer_access         = "0"
-
+  ec2_ebs_attach        = "0"
+  ec2_eni_attach        = "0"
 }
 ```
 
@@ -46,6 +47,8 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `kms_decrypt`
 * `elasticache_readonly`
 * `packer_access`
+* `ec2_ebs_attach`
+* `ec2_eni_attach`
 
 With exception of
 
