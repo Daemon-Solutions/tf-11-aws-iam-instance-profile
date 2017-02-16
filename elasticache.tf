@@ -1,5 +1,5 @@
 resource "aws_iam_role_policy" "elasticache_readonly" {
-  name = "rds_readonly"
+  name = "elasticache_readonly"
 
   count = "${var.elasticache_readonly}"
   role = "${aws_iam_role.default_role.id}"
