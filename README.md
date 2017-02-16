@@ -3,7 +3,6 @@
 Creating IAM instance profile
 
 ## Usage
-Most variables are toggle between `0` and `1` and are used for ``
 
 ```
 module "iam_profile_jenkins" {
@@ -29,7 +28,7 @@ module "iam_profile_jenkins" {
 
 ## Variables
 
-All variables take value of either '0' or '1' to exlude/include permissions in the resulting instances profile.
+Most variables are toggle between `0` and `1` and are used to exclude/include permissions in the resulting instance profile.
 
 * `ec2_describe`
 * `ec2_attach`
@@ -44,7 +43,7 @@ All variables take value of either '0' or '1' to exlude/include permissions in t
 * `ssm_managed`
 * `kms_decrypt`
 
-with exception of
+With exception of
 
 * `name` - The name of profile
 * `s3_write_buckets` - S3 buckets names, coma-delimited string
