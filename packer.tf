@@ -21,6 +21,7 @@ resource "aws_iam_role_policy" "packer_access" {
         "ec2:CreateImage",
         "ec2:CreateKeyPair",
         "ec2:CreateSecurityGroup",
+        "ec2:CreateSnapshot",
         "ec2:CreateTags",
         "ec2:CreateVolume",
         "ec2:DeleteKeyPair",
