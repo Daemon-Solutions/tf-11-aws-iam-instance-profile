@@ -45,6 +45,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `sns_allowall`
 * `sqs_allowall`
 * `ssm_managed`
+* `ssmparameter_allowall`
 * `kms_decrypt`
 * `elasticache_readonly`
 * `packer_access`
