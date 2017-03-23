@@ -75,3 +75,7 @@ variable "ec2_eni_attach" {
 variable "kinesis_streams" {
   default = "0"
 }
+
+variable "ssmparameter_allowall" {
+  default = "0"
+}
