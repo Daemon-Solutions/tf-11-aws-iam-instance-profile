@@ -83,3 +83,7 @@ variable "ssmparameter_allowall" {
 variable "es_allowall" {
   default = "0"
 }
+
+variable "sts_assumerole" {
+  default = "0"
+}
