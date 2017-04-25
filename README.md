@@ -27,6 +27,8 @@ module "iam_profile_jenkins" {
   ec2_ebs_attach        = "0"
   ec2_eni_attach        = "0"
   kinesis_streams       = "0"
+  es_allowall           = "0"
+  sts_assumerole        = "0"
 }
 ```
 
@@ -52,6 +54,8 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `ec2_ebs_attach`
 * `ec2_eni_attach`
 * `kinesis_streams`
+* `es_allowall`
+* `sts_assumerole`
 
 With exception of
 
