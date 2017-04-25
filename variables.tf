@@ -79,3 +79,7 @@ variable "kinesis_streams" {
 variable "ssmparameter_allowall" {
   default = "0"
 }
+
+variable "es_allowall" {
+  default = "0"
+}
