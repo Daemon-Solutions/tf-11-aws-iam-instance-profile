@@ -1,6 +1,6 @@
 resource "aws_iam_instance_profile" "instance_profile" {
-  name  = "${var.name}-profile"
-  roles = ["${aws_iam_role.default_role.name}"]
+  name = "${var.name}-profile"
+  role = "${aws_iam_role.default_role.name}"
 
   lifecycle {
     create_before_destroy = true

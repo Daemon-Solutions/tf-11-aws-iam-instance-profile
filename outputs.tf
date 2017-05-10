@@ -18,8 +18,8 @@ output "profile_path" {
   value = "${aws_iam_instance_profile.instance_profile.path}"
 }
 
-output "profile_roles" {
-  value = "${aws_iam_instance_profile.instance_profile.roles}"
+output "profile_role" {
+  value = "${aws_iam_instance_profile.instance_profile.role}"
 }
 
 output "profile_unique_id" {
