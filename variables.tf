@@ -87,3 +87,7 @@ variable "es_allowall" {
 variable "sts_assumerole" {
   default = "0"
 }
+
+variable "firehose_streams" {
+  default = "0"
+}
