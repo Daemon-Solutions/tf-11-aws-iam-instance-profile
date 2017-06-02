@@ -88,6 +88,10 @@ variable "sts_assumerole" {
   default = "0"
 }
 
+variable "firehose_streams" {
+  default = "0"
+}
+
 variable "autoscaling_describe" {
   default = "0"
 }

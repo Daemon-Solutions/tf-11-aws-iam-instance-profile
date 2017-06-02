@@ -29,6 +29,7 @@ module "iam_profile_jenkins" {
   kinesis_streams       = "0"
   es_allowall           = "0"
   sts_assumerole        = "0"
+  firehose_streams      = "0"
 }
 ```
 
@@ -56,6 +57,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `kinesis_streams`
 * `es_allowall`
 * `sts_assumerole`
+* `firehose_streams`
 
 With exception of
 
