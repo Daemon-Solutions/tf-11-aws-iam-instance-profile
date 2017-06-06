@@ -30,6 +30,8 @@ module "iam_profile_jenkins" {
   es_allowall           = "0"
   sts_assumerole        = "0"
   firehose_streams      = "0"
+  autoscaling_describe  = "0"
+  autoscaling_update    = "0"
 }
 ```
 
@@ -58,6 +60,8 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `es_allowall`
 * `sts_assumerole`
 * `firehose_streams`
+* `autoscaling_describe`
+* `autoscaling_update`
 
 With exception of
 
