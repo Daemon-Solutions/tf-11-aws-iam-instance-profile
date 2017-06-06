@@ -95,3 +95,7 @@ variable "firehose_streams" {
 variable "autoscaling_describe" {
   default = "0"
 }
+
+variable "autoscaling_update" {
+  default = "0"
+}
