@@ -101,3 +101,28 @@ resource "aws_iam_role_policy" "ec2_eni_attach" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "ec2_write_tags" {
+  name  = "ec2_write_tags"
+  count = "${var.ec2_write_tags}"
+  role  = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ec2:CreateTags"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
