@@ -32,6 +32,7 @@ module "iam_profile_jenkins" {
   firehose_streams      = "0"
   autoscaling_describe  = "0"
   autoscaling_update    = "0"
+  ec2_write_tags        = "0"
 }
 ```
 
@@ -62,6 +63,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `firehose_streams`
 * `autoscaling_describe`
 * `autoscaling_update`
+* `ec2_write_tags`
 
 With exception of
 
