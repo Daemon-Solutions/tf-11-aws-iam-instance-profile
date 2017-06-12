@@ -100,6 +100,14 @@ variable "autoscaling_update" {
   default = "0"
 }
 
+variable "autoscaling_suspend_resume" {
+  default = "0"
+}
+
+variable "autoscaling_terminate_instance" {
+  default = "0"
+}
+
 variable "ec2_write_tags" {
   default = "0"
 }
