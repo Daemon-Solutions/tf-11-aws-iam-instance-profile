@@ -47,3 +47,54 @@ resource "aws_iam_role_policy" "autoscaling_update" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "autoscaling_suspend_resume" {
+  name  = "autoscaling_suspend_resume"
+  count = "${var.autoscaling_suspend_resume}"
+  role  = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "autoscaling:SuspendProcesses",
+        "autoscaling:ResumeProcesses"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "autoscaling_terminate_instance" {
+  name  = "autoscaling_suspend_resume"
+  count = "${var.autoscaling_terminate_instance}"
+  role  = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "autoscaling:TerminateInstanceInAutoScalingGroup"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}

@@ -10,29 +10,31 @@ module "iam_profile_jenkins" {
 
   name = "${var.envtype}_iam_profile_jenkins"
 
-  ec2_describe          = "1"
-  ec2_attach            = "1"
-  s3_readonly           = "1"
-  rds_readonly          = "0"
-  r53_update            = "1"
-  cw_readonly           = "1"
-  redshift_read         = "0"
-  sqs_allowall          = "0"
-  sns_allowall          = "0"
-  s3_write_buckets      = "tmc-nonprod-repo,tmc-prod-repo"
-  kms_decrypt           = "1"
-  kms_decrypt_arns      = "${aws_kms_key.puppet.arn}"
-  elasticache_readonly  = "0"
-  packer_access         = "0"
-  ec2_ebs_attach        = "0"
-  ec2_eni_attach        = "0"
-  kinesis_streams       = "0"
-  es_allowall           = "0"
-  sts_assumerole        = "0"
-  firehose_streams      = "0"
-  autoscaling_describe  = "0"
-  autoscaling_update    = "0"
-  ec2_write_tags        = "0"
+  ec2_describe                   = "1"
+  ec2_attach                     = "1"
+  s3_readonly                    = "1"
+  rds_readonly                   = "0"
+  r53_update                     = "1"
+  cw_readonly                    = "1"
+  redshift_read                  = "0"
+  sqs_allowall                   = "0"
+  sns_allowall                   = "0"
+  s3_write_buckets               = "tmc-nonprod-repo,tmc-prod-repo"
+  kms_decrypt                    = "1"
+  kms_decrypt_arns               = "${aws_kms_key.puppet.arn}"
+  elasticache_readonly           = "0"
+  packer_access                  = "0"
+  ec2_ebs_attach                 = "0"
+  ec2_eni_attach                 = "0"
+  kinesis_streams                = "0"
+  es_allowall                    = "0"
+  sts_assumerole                 = "0"
+  firehose_streams               = "0"
+  autoscaling_describe           = "0"
+  autoscaling_update             = "0"
+  autoscaling_suspend_resume     = "0"
+  autoscaling_terminate_instance = "0"
+  ec2_write_tags                 = "0"
 }
 ```
 
@@ -63,6 +65,8 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `firehose_streams`
 * `autoscaling_describe`
 * `autoscaling_update`
+* `autoscaling_suspend_resume`
+* `autoscaling_terminate_instance`
 * `ec2_write_tags`
 
 With exception of
