@@ -27,6 +27,7 @@ resource "aws_iam_role_policy" "ssm_parameter_allow_all" {
       "ssm:DescribeParameter",
       "ssm:PutParameter",
       "ssm:GetParameter",
+      "ssm:GetParameters",
       "ssm:DeleteParameter"
    ],
       "Effect": "Allow",
