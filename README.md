@@ -48,6 +48,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `rds_readonly`
 * `cw_readonly`
 * `cw_update`
+* `cw_logs_update`
 * `r53_update`
 * `redshift_read`
 * `sns_allowall`

@@ -111,3 +111,7 @@ variable "autoscaling_terminate_instance" {
 variable "ec2_write_tags" {
   default = "0"
 }
+
+variable "cw_logs_update" {
+  default = "0"
+}
