@@ -71,7 +71,9 @@ resource "aws_iam_role_policy" "cloudwatch_logs_update" {
                 "logs:CreateLogStream",
                 "logs:DescribeLogGroups",
                 "logs:DescribeLogStreams",
-                "logs:PutLogEvents"
+                "logs:PutLogEvents",
+                "logs:GetLogEvents",
+                "logs:FilterLogEvents"
             ],
             "Resource": [
                 "*"
