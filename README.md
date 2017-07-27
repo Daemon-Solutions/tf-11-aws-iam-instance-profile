@@ -53,7 +53,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `redshift_read`
 * `sns_allowall`
 * `sqs_allowall`
-* `ssm_managed`
+* `ssm_managed` - If you want to send output to s3 bucket you also need to explicitly allow write access to that bucket using `s3_write_buckets`
 * `ssmparameter_allowall`
 * `kms_decrypt`
 * `elasticache_readonly`
