@@ -1,4 +1,5 @@
-resource "aws_iam_role_policy_attachment" "ssm_managed" {
+resource "aws_iam_role_policy" "ssm_managed" {
+  name  = "ssm_managed"
   count = "${var.ssm_managed}"
   role  = "${aws_iam_role.default_role.id}"
 
