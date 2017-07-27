@@ -17,7 +17,6 @@ resource "aws_iam_role_policy" "ssm_managed" {
         "ssm:DescribeAssociation",
         "ssm:GetDeployablePatchSnapshotForInstance",
         "ssm:GetDocument",
-        "ssm:GetParameters",
         "ssm:ListAssociations",
         "ssm:ListInstanceAssociations",
         "ssm:PutInventory",
