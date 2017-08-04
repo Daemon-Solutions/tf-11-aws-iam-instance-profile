@@ -72,6 +72,6 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 With exception of
 
 * `name` - The name of profile
-* `s3_read_buckets` - S3 buckets names, coma-delimited string
-* `s3_write_buckets` - S3 buckets names, coma-delimited string
+* `s3_read_buckets` - List of S3 buckets names
+* `s3_write_buckets` - List of S3 buckets names
 * `kms_decrypt_arns` - KMS keys ARNs, coma-delimited string, requires `kms_decrypt = 1`
