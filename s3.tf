@@ -1,6 +1,6 @@
 resource "aws_iam_role_policy" "s3_readonly" {
-  name  = "s3_readonly"
-  count = "${var.s3_readonly}"
+  name  = "s3_read-${element(var.s3_read_buckets, count.index)}"
+  count = "${length(var.s3_read_buckets)}"
   role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
@@ -17,7 +17,10 @@ resource "aws_iam_role_policy" "s3_readonly" {
         "s3:Get*"
       ],
       "Effect": "Allow",
-      "Resource": [ "arn:aws:s3:::*" ]
+      "Resource": [
+        "arn:aws:s3:::${element(var.s3_read_buckets, count.index)}",
+        "arn:aws:s3:::${element(var.s3_read_buckets, count.index)}/*"
+      ]
     }
   ]
 }
@@ -25,8 +28,8 @@ EOF
 }
 
 resource "aws_iam_role_policy" "s3_write" {
-  name  = "s3_write-${element(split(",", var.s3_write_buckets), count.index)}"
-  count = "${var.s3_write_buckets != "" ? length(split(",", var.s3_write_buckets)) : 0}"
+  name  = "s3_write-${element(var.s3_write_buckets, count.index)}"
+  count = "${length(var.s3_write_buckets)}"
   role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
@@ -43,8 +46,8 @@ resource "aws_iam_role_policy" "s3_write" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:s3:::${element(split(",", var.s3_write_buckets), count.index)}",
-        "arn:aws:s3:::${element(split(",", var.s3_write_buckets), count.index)}/*"
+        "arn:aws:s3:::${element(var.s3_write_buckets, count.index)}",
+        "arn:aws:s3:::${element(var.s3_write_buckets, count.index)}/*"
       ]
     }
   ]

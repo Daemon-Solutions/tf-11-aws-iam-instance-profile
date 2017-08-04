@@ -8,8 +8,9 @@ variable "ec2_attach" {
   default = "0"
 }
 
-variable "s3_readonly" {
-  default = "1"
+variable "s3_read_buckets" {
+  type    = "list"
+  default = []
 }
 
 variable "rds_readonly" {
@@ -33,7 +34,8 @@ variable "redshift_read" {
 }
 
 variable "s3_write_buckets" {
-  default = ""
+  type    = "list"
+  default = []
 }
 
 variable "sns_allowall" {
