@@ -8,8 +8,8 @@ variable "ec2_attach" {
   default = "0"
 }
 
-variable "s3_readonly" {
-  default = "1"
+variable "s3_read_buckets" {
+  default = ""
 }
 
 variable "rds_readonly" {

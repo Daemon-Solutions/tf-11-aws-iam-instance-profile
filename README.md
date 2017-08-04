@@ -12,7 +12,7 @@ module "iam_profile_jenkins" {
 
   ec2_describe                   = "1"
   ec2_attach                     = "1"
-  s3_readonly                    = "1"
+  s3_read_buckets                = "my-bucket-1,my-bcuket-2"
   rds_readonly                   = "0"
   r53_update                     = "1"
   cw_readonly                    = "1"
@@ -44,7 +44,6 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 
 * `ec2_describe`
 * `ec2_attach`
-* `s3_readonly`
 * `rds_readonly`
 * `cw_readonly`
 * `cw_update`
@@ -73,6 +72,6 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 With exception of
 
 * `name` - The name of profile
+* `s3_read_buckets` - S3 buckets names, coma-delimited string
 * `s3_write_buckets` - S3 buckets names, coma-delimited string
 * `kms_decrypt_arns` - KMS keys ARNs, coma-delimited string, requires `kms_decrypt = 1`
-
