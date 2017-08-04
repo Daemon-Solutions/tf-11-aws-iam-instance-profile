@@ -12,7 +12,7 @@ module "iam_profile_jenkins" {
 
   ec2_describe                   = "1"
   ec2_attach                     = "1"
-  s3_read_buckets                = "my-bucket-1,my-bcuket-2"
+  s3_read_buckets                = "my-bucket-1,my-bucket-2"
   rds_readonly                   = "0"
   r53_update                     = "1"
   cw_readonly                    = "1"
