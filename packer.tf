@@ -46,7 +46,8 @@ resource "aws_iam_role_policy" "packer_access" {
         "ec2:RegisterImage",
         "ec2:RunInstances",
         "ec2:StopInstances",
-        "ec2:TerminateInstances"
+        "ec2:TerminateInstances",
+        "iam:Passrole"
       ],
       "Effect": "Allow",
       "Resource": "*"
