@@ -54,6 +54,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `redshift_read`
 * `sns_allowall`
 * `sqs_allowall`
+* `ssm_get_params`
 * `ssm_managed` - If you want to send output to s3 bucket you also need to explicitly allow write access to that bucket using `s3_write_buckets`
 * `ssmparameter_allowall`
 * `kms_decrypt`
@@ -77,5 +78,6 @@ With exception of
 * `name` - The name of profile
 * `s3_read_buckets` - List of S3 buckets names
 * `s3_write_buckets` - List of S3 buckets names
+* `ssm_get_params_names` - List of SSM parameter names
 * `kms_decrypt_arns` - KMS keys ARNs, coma-delimited string, requires `kms_decrypt = 1`
 * `kms_encrypt_arns` - KMS keys ARNs, coma-delimited string, requires `kms_encrypt = 1`
