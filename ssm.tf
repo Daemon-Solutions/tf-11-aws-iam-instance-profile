@@ -1,3 +1,27 @@
+data "aws_iam_policy_document" "ssm_get_params" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "ssm:GetParameter",
+    ]
+
+    resources = ["${formatlist("arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/%v", var.ssm_get_params_names)}"]
+  }
+}
+
+resource "aws_iam_role_policy" "ssm_get_params" {
+  count = "${var.ssm_get_params}"
+
+  name   = "ssm_get_params"
+  role   = "${aws_iam_role.default_role.id}"
+  policy = "${data.aws_iam_policy_document.ssm_get_params.json}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_iam_role_policy" "ssm_managed" {
   name  = "ssm_managed"
   count = "${var.ssm_managed}"

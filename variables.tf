@@ -136,6 +136,18 @@ variable "firehose_streams" {
 }
 
 /* System Manager policies */
+variable "ssm_get_params" {
+  description = "Bit indicating whether to create a role policy to allow getting SSM parameters"
+  type        = "string"
+  default     = "0"
+}
+
+variable "ssm_get_params_names" {
+  description = "List of SSM parameter names to be allowed"
+  type        = "list"
+  default     = []
+}
+
 variable "ssm_managed" {
   description = "Bit indicating whether to create a role policy to allow SSM management"
   type        = "string"
