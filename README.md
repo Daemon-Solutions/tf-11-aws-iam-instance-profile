@@ -22,6 +22,8 @@ module "iam_profile_jenkins" {
   s3_write_buckets               = ["tmc-nonprod-repo", "tmc-prod-repo"]
   kms_decrypt                    = "1"
   kms_decrypt_arns               = "${aws_kms_key.puppet.arn}"
+  kms_encrypt                    = "1"
+  kms_encrypt_arns               = "${aws_kms_key.puppet.arn}"
   elasticache_readonly           = "0"
   packer_access                  = "0"
   ec2_ebs_attach                 = "0"
@@ -55,6 +57,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `ssm_managed` - If you want to send output to s3 bucket you also need to explicitly allow write access to that bucket using `s3_write_buckets`
 * `ssmparameter_allowall`
 * `kms_decrypt`
+* `kms_encrypt`
 * `elasticache_readonly`
 * `packer_access`
 * `ec2_ebs_attach`
@@ -75,3 +78,4 @@ With exception of
 * `s3_read_buckets` - List of S3 buckets names
 * `s3_write_buckets` - List of S3 buckets names
 * `kms_decrypt_arns` - KMS keys ARNs, coma-delimited string, requires `kms_decrypt = 1`
+* `kms_encrypt_arns` - KMS keys ARNs, coma-delimited string, requires `kms_encrypt = 1`
