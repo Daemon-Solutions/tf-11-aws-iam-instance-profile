@@ -99,13 +99,25 @@ variable "r53_update" {
 
 /* Key Management Service policies */
 variable "kms_decrypt" {
-  description = "Bit indicating whether to create a role policy to allow access to decrypt KMS keys"
+  description = "Bit indicating whether to create a role policy to allow decryption using KMS"
   type        = "string"
   default     = "0"
 }
 
 variable "kms_decrypt_arns" {
-  description = "Comma seperated list of resource ARNs that are allowed to decrypt KMS keys"
+  description = "Comma seperated list of KMS key ARNs that can be used for decryption"
+  type        = "string"
+  default     = ""
+}
+
+variable "kms_encrypt" {
+  description = "Bit indicating whether to create a role policy to allow encryption using KMS"
+  type        = "string"
+  default     = "0"
+}
+
+variable "kms_encrypt_arns" {
+  description = "Comma seperated list of KMS key ARNs that can be used for encryption"
   type        = "string"
   default     = ""
 }
