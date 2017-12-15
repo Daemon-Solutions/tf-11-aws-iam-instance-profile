@@ -10,10 +10,6 @@ output "profile_name" {
   value = "${aws_iam_instance_profile.instance_profile.name}"
 }
 
-output "profile_create_date" {
-  value = "${aws_iam_instance_profile.instance_profile.create_date}"
-}
-
 output "profile_path" {
   value = "${aws_iam_instance_profile.instance_profile.path}"
 }
