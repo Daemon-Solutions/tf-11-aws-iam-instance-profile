@@ -217,8 +217,8 @@ variable "rds_readonly" {
 }
 
 /* Provides full access to the Transcribe service */
-variable "ml_transcribe_fullaccess" {
-  description = "Bit indicating whether to create a role policy to allow full access to the Machine Learning Transcribe Service"
+variable "transcribe_fullaccess" {
+  description = "Bit indicating whether to create a role policy to allow full access to the Transcribe Service"
   type        = "string"
   default     = "0"
 }
