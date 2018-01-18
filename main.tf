@@ -30,3 +30,14 @@ resource "aws_iam_role" "default_role" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy_attachment" "aws_policies" {
+  count = "${length(var.aws_policies)}"
+
+  role       = "${aws_iam_role.default_role.id}"
+  policy_arn = "arn:aws:iam::aws:policy/${element(var.aws_policies, count.index)}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

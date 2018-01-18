@@ -215,3 +215,16 @@ variable "rds_readonly" {
   type        = "string"
   default     = "0"
 }
+
+/* Provides full access to the Transcribe service */
+variable "transcribe_fullaccess" {
+  description = "Bit indicating whether to create a role policy to allow full access to the Transcribe Service"
+  type        = "string"
+  default     = "0"
+}
+
+variable "aws_policies" {
+  description = "A list of AWS policies to attach, e.g. AmazonMachineLearningFullAccess"
+  type        = "list"
+  default     = []
+}
