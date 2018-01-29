@@ -17,6 +17,7 @@ module "iam_profile_jenkins" {
   r53_update                     = "1"
   cw_readonly                    = "1"
   redshift_read                  = "0"
+  redshift_write                 = "0"
   sqs_allowall                   = "0"
   sns_allowall                   = "0"
   s3_write_buckets               = ["tmc-nonprod-repo", "tmc-prod-repo"]
@@ -52,6 +53,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `cw_logs_update`
 * `r53_update`
 * `redshift_read`
+* `redshift_write`
 * `sns_allowall`
 * `sqs_allowall`
 * `ssm_get_params`

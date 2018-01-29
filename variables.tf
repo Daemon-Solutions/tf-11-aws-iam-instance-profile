@@ -162,10 +162,17 @@ variable "ssmparameter_allowall" {
 
 /* Redshift policies */
 variable "redshift_read" {
-  description = "Bit indicating whether to create a role policy to allow read access to Redshift, and assocated ec2/CloudWatch access"
+  description = "Bit indicating whether to create a role policy to allow read access to Redshift, and associated ec2/CloudWatch access"
   type        = "string"
   default     = "0"
 }
+
+variable "redshift_write" {
+  description = "Bit indicating whether to create a role policy to allow write access to Redshift, and associated ec2/CloudWatch access"
+  type        = "string"
+  default     = "0"
+}
+
 
 /* Simple Notification Service policies */
 variable "sns_allowall" {
