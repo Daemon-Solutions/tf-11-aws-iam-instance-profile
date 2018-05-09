@@ -130,9 +130,15 @@ variable "kinesis_streams" {
 }
 
 variable "firehose_streams" {
-  description = "Bit indicating whether to create a role policy to allow the PutRecordBatch permission to Firehose Streams"
+  description = "Bit indicating whether to create a role policy to allow sending to Firehose Streams"
   type        = "string"
   default     = "0"
+}
+
+variable "firehose_stream_arns" {
+  description = "List of Firehose Stream ARNs to be allowed"
+  type        = "list"
+  default     = []
 }
 
 /* System Manager policies */

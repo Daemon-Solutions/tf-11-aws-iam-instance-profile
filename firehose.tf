@@ -1,24 +1,26 @@
-resource "aws_iam_role_policy" "firehose_streams" {
-  name  = "firehose_streams"
+data "aws_iam_policy_document" "firehose_streams" {
   count = "${var.firehose_streams}"
-  role  = "${aws_iam_role.default_role.id}"
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "firehose:PutRecord",
+      "firehose:PutRecordBatch",
+    ]
+
+    resources = ["${var.firehose_stream_arns}"]
+  }
+}
+
+resource "aws_iam_role_policy" "firehose_streams" {
+  count = "${var.firehose_streams}"
+
+  name   = "firehose_streams"
+  role   = "${aws_iam_role.default_role.id}"
+  policy = "${join("", data.aws_iam_policy_document.firehose_streams.*.json)}"
 
   lifecycle {
     create_before_destroy = true
   }
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "firehose:PutRecordBatch"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    }
-  ]
-}
-EOF
 }
