@@ -32,6 +32,7 @@ module "iam_profile_jenkins" {
   es_allowall                    = "0"
   sts_assumerole                 = "0"
   firehose_streams               = "0"
+  firehose_stream_arns           = []
   autoscaling_describe           = "0"
   autoscaling_update             = "0"
   autoscaling_suspend_resume     = "0"
@@ -76,6 +77,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 With exception of
 
 * `name` - The name of profile
+* `firehose_stream_arns` - List of Firehose Stream ARNs, requires `firehose_streams = 1`
 * `s3_read_buckets` - List of S3 buckets names
 * `s3_write_buckets` - List of S3 buckets names
 * `ssm_get_params_names` - List of SSM parameter names
