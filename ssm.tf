@@ -4,6 +4,7 @@ data "aws_iam_policy_document" "ssm_get_params" {
 
     actions = [
       "ssm:GetParameter",
+      "ssm:GetParameters",
     ]
 
     resources = ["${formatlist("arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/%v", var.ssm_get_params_names)}"]
@@ -41,6 +42,7 @@ resource "aws_iam_role_policy" "ssm_managed" {
         "ssm:DescribeAssociation",
         "ssm:GetDeployablePatchSnapshotForInstance",
         "ssm:GetDocument",
+        "ssm:GetManifest",
         "ssm:ListAssociations",
         "ssm:ListInstanceAssociations",
         "ssm:PutInventory",
