@@ -22,3 +22,29 @@ resource "aws_iam_role_policy" "es_allowall" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "es_readonly" {
+  name  = "es_readonly"
+  count = "${var.es_readonly}"
+  role  = "${aws_iam_role.default_role.id}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "es:ESHttpGet",
+        "es:ListDomainNames"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}

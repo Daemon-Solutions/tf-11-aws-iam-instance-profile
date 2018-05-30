@@ -65,6 +65,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `ec2_ebs_attach`
 * `ec2_eni_attach`
 * `kinesis_streams`
+* `es_readonly`
 * `es_allowall`
 * `sts_assumerole`
 * `firehose_streams`

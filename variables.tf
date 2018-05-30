@@ -202,6 +202,12 @@ variable "packer_access" {
 }
 
 /* Elasticsearch policies */
+variable "es_readonly" {
+  description = "Bit indicating whether to create a role policy to allow read permissions to the Elastisearch Service"
+  type        = "string"
+  default     = "0"
+}
+
 variable "es_allowall" {
   description = "Bit indicating whether to create a role policy to allow full access to Elasticsearch"
   type        = "string"
