@@ -59,10 +59,22 @@ variable "ec2_write_tags" {
 }
 
 /* S3 Role Policies */
+variable "s3_readonly" {
+  description = "Bit indicating whether to create a role policy to allow List/Get objects in a bucket"
+  type        = "string"
+  default     = "1"
+}
+
 variable "s3_read_buckets" {
   description = "A list of s3 buckets to create read role policies on"
   type        = "list"
   default     = []
+}
+
+variable "s3_write" {
+  description = "Bit indicating whether to create a role policy to allow full access to a bucket"
+  type        = "string"
+  default     = "1"
 }
 
 variable "s3_write_buckets" {

@@ -1,56 +1,52 @@
+data "aws_iam_policy_document" "readonly_buckets" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3:List*",
+      "s3:Get*",
+    ]
+
+    resources = [
+      "${formatlist("arn:aws:s3:::%v", var.s3_read_buckets)}",
+      "${formatlist("arn:aws:s3:::%v/*", var.s3_read_buckets)}",
+    ]
+  }
+}
+
 resource "aws_iam_role_policy" "s3_readonly" {
-  name  = "s3_read-${element(var.s3_read_buckets, count.index)}"
-  count = "${length(var.s3_read_buckets)}"
-  role  = "${aws_iam_role.default_role.id}"
+  name   = "s3_readonly"
+  count  = "${var.s3_readonly}"
+  role   = "${aws_iam_role.default_role.id}"
+  policy = "${data.aws_iam_policy_document.readonly_buckets.json}"
 
   lifecycle {
     create_before_destroy = true
   }
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:List*",
-        "s3:Get*"
-      ],
-      "Effect": "Allow",
-      "Resource": [
-        "arn:aws:s3:::${element(var.s3_read_buckets, count.index)}",
-        "arn:aws:s3:::${element(var.s3_read_buckets, count.index)}/*"
-      ]
-    }
-  ]
 }
-EOF
+
+data "aws_iam_policy_document" "write_buckets" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3:*",
+    ]
+
+    resources = [
+      "${formatlist("arn:aws:s3:::%v", var.s3_write_buckets)}",
+      "${formatlist("arn:aws:s3:::%v/*", var.s3_write_buckets)}",
+    ]
+  }
 }
 
 resource "aws_iam_role_policy" "s3_write" {
-  name  = "s3_write-${element(var.s3_write_buckets, count.index)}"
-  count = "${length(var.s3_write_buckets)}"
-  role  = "${aws_iam_role.default_role.id}"
+  name   = "s3_write"
+  count  = "${var.s3_write}"
+  role   = "${aws_iam_role.default_role.id}"
+  policy = "${data.aws_iam_policy_document.write_buckets.json}"
 
   lifecycle {
     create_before_destroy = true
   }
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:*"
-      ],
-      "Effect": "Allow",
-      "Resource": [
-        "arn:aws:s3:::${element(var.s3_write_buckets, count.index)}",
-        "arn:aws:s3:::${element(var.s3_write_buckets, count.index)}/*"
-      ]
-    }
-  ]
-}
-EOF
 }
