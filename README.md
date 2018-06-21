@@ -12,6 +12,7 @@ module "iam_profile_jenkins" {
 
   ec2_describe                   = "1"
   ec2_attach                     = "1"
+  s3_readonly                    = "1"
   s3_read_buckets                = ["my-bucket-1", "my-bucket-2"]
   rds_readonly                   = "0"
   r53_update                     = "1"
@@ -19,6 +20,7 @@ module "iam_profile_jenkins" {
   redshift_read                  = "0"
   sqs_allowall                   = "0"
   sns_allowall                   = "0"
+  s3_write                       = "1"
   s3_write_buckets               = ["tmc-nonprod-repo", "tmc-prod-repo"]
   kms_decrypt                    = "1"
   kms_decrypt_arns               = "${aws_kms_key.puppet.arn}"

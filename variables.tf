@@ -62,7 +62,7 @@ variable "ec2_write_tags" {
 variable "s3_readonly" {
   description = "Bit indicating whether to create a role policy to allow List/Get objects in a bucket"
   type        = "string"
-  default     = "1"
+  default     = "0"
 }
 
 variable "s3_read_buckets" {
@@ -74,7 +74,7 @@ variable "s3_read_buckets" {
 variable "s3_write" {
   description = "Bit indicating whether to create a role policy to allow full access to a bucket"
   type        = "string"
-  default     = "1"
+  default     = "0"
 }
 
 variable "s3_write_buckets" {
