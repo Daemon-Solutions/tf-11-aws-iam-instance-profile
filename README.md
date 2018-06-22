@@ -30,6 +30,7 @@ module "iam_profile_jenkins" {
   ec2_eni_attach                 = "0"
   kinesis_streams                = "0"
   es_allowall                    = "0"
+  es_write                       = "0"
   sts_assumerole                 = "0"
   firehose_streams               = "0"
   firehose_stream_arns           = []
@@ -66,6 +67,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `ec2_eni_attach`
 * `kinesis_streams`
 * `es_allowall`
+* `es_write`
 * `sts_assumerole`
 * `firehose_streams`
 * `autoscaling_describe`
