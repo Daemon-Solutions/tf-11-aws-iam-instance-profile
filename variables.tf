@@ -220,6 +220,12 @@ variable "es_allowall" {
   default     = "0"
 }
 
+variable "es_write" {
+  description = "Bit indicating whether to create a role policy to allow write access to Elasticsearch"
+  type        = "string"
+  default     = "0"
+}
+
 /* Security Token Service policies */
 variable "sts_assumerole" {
   description = "Bit indicating whether to create a role policy to allow assume access to the Security Token Service"
