@@ -252,3 +252,28 @@ variable "aws_policies" {
   type        = "list"
   default     = []
 }
+
+/* CodeCommit polices */
+variable "codecommit_gitpull" {
+  description = "Bit indicating whether to create a role policy to allow read access to a CodeCommit repository"
+  type        = "string"
+  default     = "0"
+}
+
+variable "codecommit_gitpush" {
+  description = "Bit indicating whether to create a role policy to allow write access to a CodeCommit repository"
+  type        = "string"
+  default     = "0"
+}
+
+variable "codecommit_gitpull_repos" {
+  description = "A list of CodeCommit repositories names to create GitPull role policies on"
+  type        = "list"
+  default     = []
+}
+
+variable "codecommit_gitpush_repos" {
+  description = "A list of CodeCommit repositories names to create GitPush role policies on"
+  type        = "list"
+  default     = []
+}
