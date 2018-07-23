@@ -266,13 +266,13 @@ variable "codecommit_gitpush" {
   default     = "0"
 }
 
-variable "codecommit_read_repos" {
+variable "codecommit_gitpull_repos" {
   description = "A list of CodeCommit repositories names to create GitPull role policies on"
   type        = "list"
   default     = []
 }
 
-variable "codecommit_write_repos" {
+variable "codecommit_gitpush_repos" {
   description = "A list of CodeCommit repositories names to create GitPush role policies on"
   type        = "list"
   default     = []
