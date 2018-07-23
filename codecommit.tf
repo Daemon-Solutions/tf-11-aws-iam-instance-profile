@@ -30,8 +30,11 @@ data "aws_iam_policy_document" "codecommit_gitpush" {
       "codecommit:GitPush",
     ]
 
-    effect    = "Allow"
-    "${formatlist("arn:aws:codecommit:*:*:%v", var.codecommit_gitpush_repos)}",
+    effect = "Allow"
+
+    resources = [
+      "${formatlist("arn:aws:codecommit:*:*:%v", var.codecommit_gitpush_repos)}",
+    ]
   }
 }
 
