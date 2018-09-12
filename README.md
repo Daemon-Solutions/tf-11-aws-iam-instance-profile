@@ -80,6 +80,7 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `ssm_get_params`
 * `ssm_managed` - If you want to send output to s3 bucket you also need to explicitly allow write access to that bucket using `s3_write_buckets`
 * `ssmparameter_allowall`
+* `ssm_session_manager`
 * `sts_assumerole`
 
 With exception of

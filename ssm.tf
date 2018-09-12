@@ -24,7 +24,7 @@ resource "aws_iam_role_policy" "ssm_get_params" {
 
 resource "aws_iam_role_policy" "ssm_managed" {
   name  = "ssm_managed"
-  count = "${var.ssm_managed}"
+  count = "${(var.ssm_managed || var.ssm_session_manager) ? 1 : 0}"
   role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
@@ -94,4 +94,47 @@ resource "aws_iam_role_policy" "ssm_parameter_allow_all" {
   ]
 }
 EOF
+}
+
+data "aws_iam_policy_document" "ssm_session_manager" {
+  count = "${var.ssm_session_manager}"
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "ssmmessages:CreateControlChannel",
+      "ssmmessages:CreateDataChannel",
+      "ssmmessages:OpenControlChannel",
+      "ssmmessages:OpenDataChannel",
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3:GetEncryptionConfiguration",
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "ssm_session_manager" {
+  count = "${var.ssm_session_manager}"
+
+  name   = "ssm_session_manager"
+  role   = "${aws_iam_role.default_role.id}"
+  policy = "${data.aws_iam_policy_document.ssm_session_manager.json}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
