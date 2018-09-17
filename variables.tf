@@ -178,6 +178,12 @@ variable "ssmparameter_allowall" {
   default     = "0"
 }
 
+variable "ssm_session_manager" {
+  description = "Bit indicating whether to create a role policy to allow SSM Session Manager. Enabling this will also enable SSM management policy."
+  type        = "string"
+  default     = "0"
+}
+
 /* Redshift policies */
 variable "redshift_read" {
   description = "Bit indicating whether to create a role policy to allow read access to Redshift, and assocated ec2/CloudWatch access"
