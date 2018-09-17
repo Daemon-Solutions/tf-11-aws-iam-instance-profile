@@ -179,7 +179,7 @@ variable "ssmparameter_allowall" {
 }
 
 variable "ssm_session_manager" {
-  description = "Bit indicating whether to create a role policy to allow SSM Session Manager. It requires ssm_managed."
+  description = "Bit indicating whether to create a role policy to allow SSM Session Manager. Enabling this will also enable SSM management policy."
   type        = "string"
   default     = "0"
 }
