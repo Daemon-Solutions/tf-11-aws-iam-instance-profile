@@ -28,6 +28,12 @@ variable "ec2_eni_attach" {
   default     = "0"
 }
 
+variable "ec2_assign_private_ip" {
+  description = "Bit indicating whether to create a role policy to allow the assigning of an additional private IP address"
+  type        = "string"
+  default     = "0"
+}
+
 variable "autoscaling_describe" {
   description = "Bit indicating whether to create a role policy to allow the Describe permission on Autoscaling Groups"
   type        = "string"

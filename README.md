@@ -22,6 +22,7 @@ module "iam_profile_jenkins" {
   ec2_ebs_attach                 = "0"
   ec2_eni_attach                 = "0"
   ec2_write_tags                 = "0"
+  ec2_assign_private_ip          = "0"
   elasticache_readonly           = "0"
   es_allowall                    = "0"
   es_write                       = "0"
