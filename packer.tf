@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "packer_access" {
   name  = "packer_access"
-  count = "${var.packer_access}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.packer_access && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true

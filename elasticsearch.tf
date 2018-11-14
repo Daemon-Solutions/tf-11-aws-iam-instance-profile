@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "es_allowall" {
   name  = "es_allowall"
-  count = "${var.es_allowall}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.es_allowall && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
@@ -25,8 +25,8 @@ EOF
 
 resource "aws_iam_role_policy" "es_write" {
   name  = "es_write"
-  count = "${var.es_write}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.es_write && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true

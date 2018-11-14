@@ -1,5 +1,5 @@
 data "aws_iam_policy_document" "firehose_streams" {
-  count = "${var.firehose_streams}"
+  count = "${var.firehose_streams && var.enabled ? 1 : 0}"
 
   statement {
     effect = "Allow"
@@ -14,10 +14,10 @@ data "aws_iam_policy_document" "firehose_streams" {
 }
 
 resource "aws_iam_role_policy" "firehose_streams" {
-  count = "${var.firehose_streams}"
+  count = "${var.firehose_streams && var.enabled ? 1 : 0}"
 
   name   = "firehose_streams"
-  role   = "${aws_iam_role.default_role.id}"
+  role   = "${join("", aws_iam_role.default_role.*.id)}"
   policy = "${join("", data.aws_iam_policy_document.firehose_streams.*.json)}"
 
   lifecycle {

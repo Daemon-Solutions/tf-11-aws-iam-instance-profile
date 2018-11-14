@@ -1,4 +1,6 @@
 data "aws_iam_policy_document" "codecommit_gitpull" {
+  count = "${var.codecommit_gitpull && var.enabled ? 1 : 0}"
+
   statement {
     actions = [
       "codecommit:GitPull",
@@ -14,17 +16,19 @@ data "aws_iam_policy_document" "codecommit_gitpull" {
 
 resource "aws_iam_role_policy" "codecommit_gitpull" {
   name  = "codecommit_gitpull"
-  count = "${var.codecommit_gitpull}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.codecommit_gitpull && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
   }
 
-  policy = "${data.aws_iam_policy_document.codecommit_gitpull.json}"
+  policy = "${join("", data.aws_iam_policy_document.codecommit_gitpull.*.json)}"
 }
 
 data "aws_iam_policy_document" "codecommit_gitpush" {
+  count = "${var.codecommit_gitpush && var.enabled ? 1 : 0}"
+
   statement {
     actions = [
       "codecommit:GitPush",
@@ -40,12 +44,12 @@ data "aws_iam_policy_document" "codecommit_gitpush" {
 
 resource "aws_iam_role_policy" "codecommit_gitpush" {
   name  = "codecommit_gitpush"
-  count = "${var.codecommit_gitpush}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.codecommit_gitpush && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
   }
 
-  policy = "${data.aws_iam_policy_document.codecommit_gitpush.json}"
+  policy = "${join("", data.aws_iam_policy_document.codecommit_gitpush.*.json)}"
 }

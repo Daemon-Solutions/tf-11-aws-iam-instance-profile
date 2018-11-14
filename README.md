@@ -95,3 +95,6 @@ With exception of
 * `s3_read_buckets` - List of S3 buckets names
 * `s3_write_buckets` - List of S3 buckets names
 * `ssm_get_params_names` - List of SSM parameter names
+
+Special use-case variabes:
+* `enabled` - It is set to 1 (Enabled) by default.  To disable the resource, set `enabled = 0`

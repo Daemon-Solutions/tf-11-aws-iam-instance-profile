@@ -1,4 +1,6 @@
 data "aws_iam_policy_document" "ssm_get_params" {
+  count = "${var.ssm_get_params && var.enabled ? 1 : 0}"
+
   statement {
     effect = "Allow"
 
@@ -6,16 +8,16 @@ data "aws_iam_policy_document" "ssm_get_params" {
       "ssm:GetParameter",
     ]
 
-    resources = ["${formatlist("arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/%v", var.ssm_get_params_names)}"]
+    resources = ["${formatlist("arn:aws:ssm:${join("", data.aws_region.current.*.name)}:${join("", data.aws_caller_identity.current.*.account_id)}:parameter/%v", var.ssm_get_params_names)}"]
   }
 }
 
 resource "aws_iam_role_policy" "ssm_get_params" {
-  count = "${var.ssm_get_params}"
+  count = "${var.ssm_get_params && var.enabled ? 1 : 0}"
 
   name   = "ssm_get_params"
-  role   = "${aws_iam_role.default_role.id}"
-  policy = "${data.aws_iam_policy_document.ssm_get_params.json}"
+  role   = "${join("", aws_iam_role.default_role.*.id)}"
+  policy = "${join("", data.aws_iam_policy_document.ssm_get_params.*.json)}"
 
   lifecycle {
     create_before_destroy = true
@@ -24,8 +26,8 @@ resource "aws_iam_role_policy" "ssm_get_params" {
 
 resource "aws_iam_role_policy" "ssm_managed" {
   name  = "ssm_managed"
-  count = "${(var.ssm_managed || var.ssm_session_manager) ? 1 : 0}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${(var.ssm_managed || var.ssm_session_manager) && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
@@ -69,8 +71,8 @@ EOF
 
 resource "aws_iam_role_policy" "ssm_parameter_allow_all" {
   name  = "ssm_parameter_allow_all"
-  count = "${var.ssmparameter_allowall}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.ssmparameter_allowall && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
@@ -97,7 +99,7 @@ EOF
 }
 
 data "aws_iam_policy_document" "ssm_session_manager" {
-  count = "${var.ssm_session_manager}"
+  count = "${var.ssm_session_manager && var.enabled ? 1 : 0}"
 
   statement {
     effect = "Allow"
@@ -128,11 +130,11 @@ data "aws_iam_policy_document" "ssm_session_manager" {
 }
 
 resource "aws_iam_role_policy" "ssm_session_manager" {
-  count = "${var.ssm_session_manager}"
+  count = "${var.ssm_session_manager && var.enabled ? 1 : 0}"
 
   name   = "ssm_session_manager"
-  role   = "${aws_iam_role.default_role.id}"
-  policy = "${data.aws_iam_policy_document.ssm_session_manager.json}"
+  role   = "${join("", aws_iam_role.default_role.*.id)}"
+  policy = "${join("", data.aws_iam_policy_document.ssm_session_manager.*.json)}"
 
   lifecycle {
     create_before_destroy = true

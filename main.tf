@@ -1,6 +1,7 @@
 resource "aws_iam_instance_profile" "instance_profile" {
-  name = "${var.name}-profile"
-  role = "${aws_iam_role.default_role.name}"
+  count = "${var.enabled ? 1 : 0}"
+  name  = "${var.name}-profile"
+  role  = "${join("", aws_iam_role.default_role.*.name)}"
 
   lifecycle {
     create_before_destroy = true
@@ -8,7 +9,8 @@ resource "aws_iam_instance_profile" "instance_profile" {
 }
 
 resource "aws_iam_role" "default_role" {
-  name = "${var.name}-default_role"
+  count = "${var.enabled ? 1 : 0}"
+  name  = "${var.name}-default_role"
 
   lifecycle {
     create_before_destroy = true
@@ -32,9 +34,9 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "aws_policies" {
-  count = "${length(var.aws_policies)}"
+  count = "${var.enabled ? length(var.aws_policies) : 0}"
 
-  role       = "${aws_iam_role.default_role.id}"
+  role       = "${join("", aws_iam_role.default_role.*.id)}"
   policy_arn = "arn:aws:iam::aws:policy/${element(var.aws_policies, count.index)}"
 
   lifecycle {

@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "r53_update" {
   name  = "r53_update"
-  count = "${var.r53_update}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.r53_update && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true

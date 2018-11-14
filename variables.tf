@@ -3,6 +3,12 @@ variable "name" {
   type        = "string"
 }
 
+variable "enabled" {
+  description = "Enable or disable the resources."
+  type        = "string"
+  default     = "1"
+}
+
 /* EC2 Role Policies */
 variable "ec2_describe" {
   description = "Bit indicating whether to create a role policy for access to the ec2_describe API"

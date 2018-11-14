@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "ec2_describe" {
   name  = "ec2_describe"
-  count = "${var.ec2_describe}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.ec2_describe && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
@@ -25,8 +25,8 @@ EOF
 
 resource "aws_iam_role_policy" "ec2_attach" {
   name  = "ec2_attach"
-  count = "${var.ec2_attach}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.ec2_attach && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
@@ -50,8 +50,8 @@ EOF
 
 resource "aws_iam_role_policy" "ec2_ebs_attach" {
   name  = "ec2_ebs_attach"
-  count = "${var.ec2_ebs_attach}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.ec2_ebs_attach && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
@@ -76,8 +76,8 @@ EOF
 
 resource "aws_iam_role_policy" "ec2_eni_attach" {
   name  = "ec2_eni_attach"
-  count = "${var.ec2_eni_attach}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.ec2_eni_attach && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
@@ -104,8 +104,8 @@ EOF
 
 resource "aws_iam_role_policy" "ec2_write_tags" {
   name  = "ec2_write_tags"
-  count = "${var.ec2_write_tags}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.ec2_write_tags && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
@@ -129,8 +129,8 @@ EOF
 
 resource "aws_iam_role_policy" "ec2_assign_private_ip" {
   name  = "ec2_assign_private_ip"
-  count = "${var.ec2_assign_private_ip}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.ec2_assign_private_ip && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
