@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "sts_assumerole" {
   name  = "sts_assumerole"
-  count = "${var.sts_assumerole}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.sts_assumerole && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true

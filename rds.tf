@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "rds_readonly" {
   name  = "rds_readonly"
-  count = "${var.rds_readonly}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.rds_readonly && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true

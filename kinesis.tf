@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "kinesis_streams" {
   name  = "kinesis_streams"
-  count = "${var.kinesis_streams}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.kinesis_streams && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true

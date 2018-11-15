@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "transcribe_fullaccess" {
   name  = "transcribe_fullaccess"
-  count = "${var.transcribe_fullaccess}"
-  role  = "${aws_iam_role.default_role.id}"
+  count = "${var.transcribe_fullaccess && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
