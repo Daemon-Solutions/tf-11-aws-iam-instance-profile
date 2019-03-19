@@ -1,3 +1,13 @@
+# Replace double slashes with a single slash in ARNs.
+# With both parameter names "Test" and "/Test", the ARN in the policy must be
+# "arn:aws:ssm:*:*:parameter/Test" and not "arn:aws:ssm:*:*:parameter//Test".
+
+locals {
+  ssm_get_params_format     = "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/%v"
+  ssm_get_params_arns       = ["${formatlist(local.ssm_get_params_format, var.ssm_get_params_names)}"]
+  ssm_get_params_arns_fixed = ["${split("|", replace(join("|", local.ssm_get_params_arns), "/parameter\\/\\//", "parameter/"))}"]
+}
+
 data "aws_iam_policy_document" "ssm_get_params" {
   count = "${var.ssm_get_params && var.enabled ? 1 : 0}"
 
@@ -8,7 +18,7 @@ data "aws_iam_policy_document" "ssm_get_params" {
       "ssm:GetParameter",
     ]
 
-    resources = ["${formatlist("arn:aws:ssm:${join("", data.aws_region.current.*.name)}:${join("", data.aws_caller_identity.current.*.account_id)}:parameter/%v", var.ssm_get_params_names)}"]
+    resources = ["${local.ssm_get_params_arns_fixed}"]
   }
 }
 
