@@ -68,12 +68,12 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `ec2_ebs_attach`
 * `ec2_eni_attach`
 * `ec2_write_tags`
-* `elasticache_readonly`
-* `es_allowall`
-* `es_write`
 * `ecr_readonly`
 * `ecr_write`
 * `ecr_allowall`
+* `elasticache_readonly`
+* `es_allowall`
+* `es_write`
 * `firehose_streams`
 * `kinesis_streams`
 * `kms_decrypt`

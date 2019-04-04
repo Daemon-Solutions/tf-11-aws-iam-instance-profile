@@ -303,7 +303,7 @@ variable "ecr_readonly" {
   default     = "0"
 }
 
-variable "ecr_writeonly" {
+variable "ecr_write" {
   description = "Bit indicating whether to create a role policy to allow write access to ecr repository"
   type        = "string"
   default     = "0"
