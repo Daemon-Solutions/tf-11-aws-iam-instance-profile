@@ -295,3 +295,22 @@ variable "codecommit_gitpush_repos" {
   type        = "list"
   default     = []
 }
+
+/* ECR polices */
+variable "ecr_readonly" {
+  description = "Bit indicating whether to create a role policy to allow read access to ecr repository"
+  type        = "string"
+  default     = "0"
+}
+
+variable "ecr_writeonly" {
+  description = "Bit indicating whether to create a role policy to allow write access to ecr repository"
+  type        = "string"
+  default     = "0"
+}
+
+variable "ecr_allowall" {
+  description = "Bit indicating whether to create a role policy to allow full access to ecr repository"
+  type        = "string"
+  default     = "0"
+}

@@ -23,6 +23,9 @@ module "iam_profile_jenkins" {
   ec2_eni_attach                 = "0"
   ec2_write_tags                 = "0"
   ec2_assign_private_ip          = "0"
+  ecr_readonly                   = "0"
+  ecr_write                      = "0"
+  ecr_allowall                   = "0"
   elasticache_readonly           = "0"
   es_allowall                    = "0"
   es_write                       = "0"
@@ -68,6 +71,9 @@ Most variables are toggle between `0` and `1` and are used to exclude/include pe
 * `elasticache_readonly`
 * `es_allowall`
 * `es_write`
+* `ecr_readonly`
+* `ecr_write`
+* `ecr_allowall`
 * `firehose_streams`
 * `kinesis_streams`
 * `kms_decrypt`
