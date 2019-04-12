@@ -10,6 +10,7 @@ module "iam_profile_jenkins" {
 
   name = "${var.envtype}_iam_profile_jenkins"
 
+  ads_domain_join                = "0"
   autoscaling_describe           = "0"
   autoscaling_suspend_resume     = "0"
   autoscaling_terminate_instance = "0"
@@ -51,6 +52,7 @@ module "iam_profile_jenkins" {
 
 Most variables are toggle between `0` and `1` and are used to exclude/include permissions in the resulting instance profile.
 
+* `ads_domain_join`
 * `autoscaling_describe`
 * `autoscaling_suspend_resume`
 * `autoscaling_terminate_instance`
