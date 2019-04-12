@@ -295,3 +295,10 @@ variable "codecommit_gitpush_repos" {
   type        = "list"
   default     = []
 }
+
+/* AWS Directory Service  */
+variable "ads_domain_join" {
+  description = "Bit indicating whether to create a role policy to allow AWS Directory Service Domain Join"
+  type        = "string"
+  default     = "0"
+}
