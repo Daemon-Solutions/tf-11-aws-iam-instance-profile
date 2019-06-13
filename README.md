@@ -2,6 +2,13 @@
 
 Creating IAM instance profile
 
+## Terraform version compatibility
+
+| Module version    | Terraform version |
+|-------------------|-------------------|
+| 4.x.x             | 0.12.x            |
+| 3.x.x and earlier | 0.11.x            |
+
 ## Usage
 
 ```

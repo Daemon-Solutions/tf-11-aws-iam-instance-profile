@@ -1,7 +1,7 @@
 resource "aws_iam_instance_profile" "instance_profile" {
-  count = "${var.enabled ? 1 : 0}"
   name  = "${var.name}-profile"
-  role  = "${join("", aws_iam_role.default_role.*.name)}"
+  count = var.enabled ? 1 : 0
+  role  = aws_iam_role.default_role[0].name
 
   lifecycle {
     create_before_destroy = true
@@ -9,34 +9,32 @@ resource "aws_iam_instance_profile" "instance_profile" {
 }
 
 resource "aws_iam_role" "default_role" {
-  count = "${var.enabled ? 1 : 0}"
-  name  = "${var.name}-default_role"
+  name               = "${var.name}-default_role"
+  count              = var.enabled ? 1 : 0
+  assume_role_policy = data.aws_iam_policy_document.default_role_assume[0].json
 
   lifecycle {
     create_before_destroy = true
   }
-
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
 }
-EOF
+
+data "aws_iam_policy_document" "default_role_assume" {
+  count = var.enabled ? 1 : 0
+
+  statement {
+    actions = ["sts:AssumeRole"]
+    effect  = "Allow"
+
+    principals {
+      identifiers = ["ec2.amazonaws.com"]
+      type        = "Service"
+    }
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "aws_policies" {
-  count = "${var.enabled ? length(var.aws_policies) : 0}"
-
-  role       = "${join("", aws_iam_role.default_role.*.id)}"
+  count      = var.enabled ? length(var.aws_policies) : 0
+  role       = aws_iam_role.default_role[0].id
   policy_arn = "arn:aws:iam::aws:policy/${element(var.aws_policies, count.index)}"
 
   lifecycle {
