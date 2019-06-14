@@ -1,31 +1,31 @@
 output "profile_id" {
-  value = "${join("", aws_iam_instance_profile.instance_profile.*.id)}"
+  value = aws_iam_instance_profile.instance_profile[0].id
 }
 
 output "profile_arn" {
-  value = "${join("", aws_iam_instance_profile.instance_profile.*.arn)}"
+  value = aws_iam_instance_profile.instance_profile[0].arn
 }
 
 output "profile_name" {
-  value = "${join("", aws_iam_instance_profile.instance_profile.*.name)}"
+  value = aws_iam_instance_profile.instance_profile[0].name
 }
 
 output "profile_path" {
-  value = "${join("", aws_iam_instance_profile.instance_profile.*.path)}"
+  value = aws_iam_instance_profile.instance_profile[0].path
 }
 
 output "profile_role" {
-  value = "${join("", aws_iam_instance_profile.instance_profile.*.role)}"
+  value = aws_iam_instance_profile.instance_profile[0].role
 }
 
 output "profile_unique_id" {
-  value = "${join("", aws_iam_instance_profile.instance_profile.*.unique_id)}"
+  value = aws_iam_instance_profile.instance_profile[0].unique_id
 }
 
 output "role_arn" {
-  value = "${join("", aws_iam_role.default_role.*.arn)}"
+  value = aws_iam_role.default_role[0].arn
 }
 
 output "role_id" {
-  value = "${join("", aws_iam_role.default_role.*.id)}"
+  value = aws_iam_role.default_role[0].id
 }
