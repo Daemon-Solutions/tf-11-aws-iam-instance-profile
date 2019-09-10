@@ -16,6 +16,8 @@ data "aws_iam_policy_document" "ssm_get_params" {
 
     actions = [
       "ssm:GetParameter",
+      "ssm:GetParameters",
+      "ssm:GetParametersByPath",
     ]
 
     resources = ["${local.ssm_get_params_arns_fixed}"]
@@ -98,6 +100,7 @@ resource "aws_iam_role_policy" "ssm_parameter_allow_all" {
       "ssm:PutParameter",
       "ssm:GetParameter",
       "ssm:GetParameters",
+      "ssm:GetParametersByPath",
       "ssm:DeleteParameter"
    ],
       "Effect": "Allow",

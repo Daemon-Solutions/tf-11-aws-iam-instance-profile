@@ -2,6 +2,8 @@
 
 Creating IAM instance profile
 
+This is for Terraform v0.11 V4.x.x is for Terraform v0.12 and beyond
+
 ## Usage
 
 ```
