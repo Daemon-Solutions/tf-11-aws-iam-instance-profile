@@ -51,3 +51,28 @@ data "aws_iam_policy_document" "s3_write" {
     ])
   }
 }
+
+resource "aws_iam_role_policy" "s3_writeonly" {
+  name   = "s3_writeonly"
+  count  = var.s3_writeonly && var.enabled ? 1 : 0
+  role   = aws_iam_role.default_role[0].id
+  policy = data.aws_iam_policy_document.s3_writeonly[0].json
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+data "aws_iam_policy_document" "s3_writeonly" {
+  count = var.s3_writeonly && var.enabled ? 1 : 0
+
+  statement {
+    actions = ["s3:Put*"]
+    effect  = "Allow"
+
+    resources = flatten([
+      formatlist("arn:aws:s3:::%v", var.s3_writeonly_buckets),
+      formatlist("arn:aws:s3:::%v/*", var.s3_writeonly_buckets),
+    ])
+  }
+}

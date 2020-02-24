@@ -54,6 +54,12 @@ module "test_instance_profile" {
     aws_s3_bucket.test_bucket_2.bucket,
   ]
 
+  s3_writeonly = true
+  s3_writeonly_buckets = [
+    aws_s3_bucket.test_bucket_1.bucket,
+    aws_s3_bucket.test_bucket_2.bucket,
+  ]
+
   ssm_get_params       = true
   ssm_get_params_names = ["*"]
 

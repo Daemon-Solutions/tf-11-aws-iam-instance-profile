@@ -95,6 +95,18 @@ variable "s3_write_buckets" {
   default     = []
 }
 
+variable "s3_writeonly" {
+  description = "Bit indicating whether to create a role policy to allow write only access to a bucket"
+  type        = string
+  default     = "0"
+}
+
+variable "s3_writeonly_buckets" {
+  description = "A list of s3 buckets to create write only role policies on"
+  type        = list(string)
+  default     = []
+}
+
 /* CloudWatch policies */
 variable "cw_readonly" {
   description = "Bit indicating whether to create a role policy to allow List/Get permissions on a Cloudwatch service"
