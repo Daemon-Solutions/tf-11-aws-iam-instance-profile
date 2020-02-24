@@ -82,6 +82,7 @@ The following variables toggle policies on and off.  These can be set to `1` or 
 | `redshift_read`                  | Read-only access to Redshift resources                                            | `redshift.tf`      |
 | `s3_readonly`                    | Read access to given S3 buckets (requires `s3_read_buckets`)                      | `s3.tf`            |
 | `s3_write`                       | Write access to given S3 buckets (requires `s3_write_buckets`)                    | `s3.tf`            |
+| `s3_writeonly`                   | Write-only (no read) access to given S3 buckets (requires `s3_writeonly_buckets`) | `s3.tf`            |
 | `sns_allowall`                   | Full access to SNS                                                                | `sns.tf`           |
 | `sqs_allowall`                   | Full access to SQS                                                                | `sqs.tf`           |
 | `ssm_get_params`                 | GetParameter for given SSM Parameters (requires `ssm_get_params_names`)           | `ssm.tf`           |
@@ -95,13 +96,14 @@ Note that for `ssm_managed`, if you want to send output to an S3 bucket you will
 
 The following are only required in certain circumstances:
 
-| Name                       | Required when                        | Type            | Description                                                 |
-|----------------------------|--------------------------------------|:---------------:|-------------------------------------------------------------|
-| `codecommit_gitpull_repos` | `codecommit_gitpull` = `1` or `true` | List of Strings | List of CodeCommit Repository names to allow pull access    |
-| `codecommit_gitpush_repos` | `codecommit_gitpush` = `1` or `true` | List of Strings | List of CodeCommit Repository names to allow push access    |
-| `firehose_stream_arns`     | `firehose_streams` = `1` or `true`   | List of Strings | List of Firehose Stream ARNs to allow access to             |
-| `kms_decrypt_arns`         | `kms_decrypt` = `1` or `true`        | String          | Comma-delimited list of KMS Keys to allow decryption with   |
-| `kms_encrypt_arns`         | `kms_encrypt` = `1` or `true`        | String          | Comma-delimited list of KMS Keys to allow encryption with   |
-| `s3_read_buckets`          | `s3_readonly` = `1` or `true`        | List of Strings | List of S3 bucket names (not ARNs) to allow read access to  |
-| `s3_write_buckets`         | `s3_write` = `1` or `true`           | List of Strings | List of S3 bucket names (not ARNs) to allow write access to |
-| `ssm_get_params_names`     | `ssm_get_params` = `1` or `true`     | List of Strings | List of SSM Parameter names to allow read access to         |
+| Name                       | Required when                        | Type            | Description                                                                |
+|----------------------------|--------------------------------------|:---------------:|----------------------------------------------------------------------------|
+| `codecommit_gitpull_repos` | `codecommit_gitpull` = `1` or `true` | List of Strings | List of CodeCommit Repository names to allow pull access                   |
+| `codecommit_gitpush_repos` | `codecommit_gitpush` = `1` or `true` | List of Strings | List of CodeCommit Repository names to allow push access                   |
+| `firehose_stream_arns`     | `firehose_streams` = `1` or `true`   | List of Strings | List of Firehose Stream ARNs to allow access to                            |
+| `kms_decrypt_arns`         | `kms_decrypt` = `1` or `true`        | String          | Comma-delimited list of KMS Keys to allow decryption with                  |
+| `kms_encrypt_arns`         | `kms_encrypt` = `1` or `true`        | String          | Comma-delimited list of KMS Keys to allow encryption with                  |
+| `s3_read_buckets`          | `s3_readonly` = `1` or `true`        | List of Strings | List of S3 bucket names (not ARNs) to allow read access to                 |
+| `s3_write_buckets`         | `s3_write` = `1` or `true`           | List of Strings | List of S3 bucket names (not ARNs) to allow write access to                |
+| `s3_writeonly_buckets`     | `s3_writeonly` = `1` or `true`       | List of Strings | List of S3 bucket names (not ARNs) to allow write-only (no read) access to |
+| `ssm_get_params_names`     | `ssm_get_params` = `1` or `true`     | List of Strings | List of SSM Parameter names to allow read access to                        |
