@@ -89,7 +89,8 @@ The following variables toggle policies on and off.  These can be set to `1` or 
 | `ssm_managed`                    | Permissions required for managing an instance in SSM.  See note below.            | `ssm.tf`           |
 | `ssmparameter_allowall`          | Get and set all SSM Parameters                                                    | `ssm.tf`           |
 | `ssm_session_manager`            | Access to SSM Session Manager                                                     | `ssm.tf`           |
-| `sts_assumerole`                 | Allow the instance to assume IAM roles                                            | `sts.tf`           |
+| `sts_assumerole`                 | Allow the instance to assume IAM roles listed in sts_assumeroles                  | `sts.tf`           |
+| `sts_assumeroles`                | List of IAM role ARNs to allow the instance to assume.                            | `sts.tf`           |
 | `transcribe_fullaccess`          | Full access to Transcribe                                                         | `transcribe.tf`    |
 
 Note that for `ssm_managed`, if you want to send output to an S3 bucket you will also need to explicitly allow write access to that bucket using `s3_write` and `s3_write_buckets`.
@@ -107,3 +108,4 @@ The following are only required in certain circumstances:
 | `s3_write_buckets`         | `s3_write` = `1` or `true`           | List of Strings | List of S3 bucket names (not ARNs) to allow write access to                |
 | `s3_writeonly_buckets`     | `s3_writeonly` = `1` or `true`       | List of Strings | List of S3 bucket names (not ARNs) to allow write-only (no read) access to |
 | `ssm_get_params_names`     | `ssm_get_params` = `1` or `true`     | List of Strings | List of SSM Parameter names to allow read access to                        |
+| `sts_assumeroles`          | sts_assumerole = `1` or `true`     | List of Strings | List of IAM role ARNs to allow the instance to assume.                        |
