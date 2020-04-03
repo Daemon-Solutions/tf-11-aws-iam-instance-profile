@@ -246,9 +246,15 @@ variable "es_write" {
 
 /* Security Token Service policies */
 variable "sts_assumerole" {
-  description = "Bit indicating whether to create a role policy to allow assume access to the Security Token Service"
+  description = "Bit indicating whether to create a role policy to allow assume access to the role ARNs listed in sts_assumeroles"
   type        = "string"
   default     = "0"
+}
+
+variable "sts_assumeroles" {
+  description = "List of IAM role ARNs to allow the instance to assume."
+  type        = "list"
+  default     = []
 }
 
 /* Relational Database Service policies */
