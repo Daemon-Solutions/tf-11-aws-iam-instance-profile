@@ -263,6 +263,12 @@ variable "sts_assumerole" {
   default     = "0"
 }
 
+variable "sts_assumeroles" {
+  description = "List of IAM role ARNs that the instance should be allowed to assume."
+  type        = list(string)
+  default     = []
+}
+
 /* Relational Database Service policies */
 variable "rds_readonly" {
   description = "Bit indicating whether to create a role policy to allow read access to the a Relational Database Service"
