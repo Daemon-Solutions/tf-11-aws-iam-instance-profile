@@ -7,18 +7,19 @@ resource "aws_iam_role_policy" "sts_assumerole" {
     create_before_destroy = true
   }
 
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "sts:AssumeRole"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    }
-  ]
+  policy = "${join("", data.aws_iam_policy_document.sts_assume_roles.*.json)}"
 }
-EOF
+
+data "aws_iam_policy_document" "sts_assume_roles" {
+  count = "${var.sts_assumerole && var.enabled ? 1 : 0}"
+
+  statement {
+    sid = "AllowAssumingRoles"
+
+    actions = [
+      "sts:AssumeRole",
+    ]
+
+    resources = "${var.sts_assumeroles}"
+  }
 }

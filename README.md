@@ -47,6 +47,9 @@ module "iam_profile_jenkins" {
   sns_allowall                   = "0"
   sqs_allowall                   = "0"
   sts_assumerole                 = "0"
+  sts_assumeroles                 = [
+    "arn:aws:iam::123456789101:role/myrole"
+  ]
 }
 ```
 
@@ -99,6 +102,7 @@ With exception of
 * `s3_read_buckets` - List of S3 buckets names
 * `s3_write_buckets` - List of S3 buckets names
 * `ssm_get_params_names` - List of SSM parameter names
+* `sts_assumeroles` - List of IAM role ARNs.
 
 Special use-case variabes:
 * `enabled` - It is set to 1 (Enabled) by default.  To disable the resource, set `enabled = 0`
