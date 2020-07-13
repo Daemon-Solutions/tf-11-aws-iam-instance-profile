@@ -38,7 +38,6 @@ module "test_instance_profile" {
   sns_allowall                   = true
   ssm_managed                    = true
   ssm_session_manager            = true
-  ssmparameter_allowall          = true
   sts_assumerole                 = true
   transcribe_fullaccess          = true
 
