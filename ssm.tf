@@ -22,7 +22,11 @@ data "aws_iam_policy_document" "ssm_get_params" {
   count = var.ssm_get_params && var.enabled ? 1 : 0
 
   statement {
-    actions   = ["ssm:GetParameter"]
+    actions = [
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+      "ssm:GetParametersByPath",
+    ]
     effect    = "Allow"
     resources = local.ssm_get_params_arns_fixed
   }
