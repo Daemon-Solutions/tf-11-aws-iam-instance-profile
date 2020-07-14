@@ -87,7 +87,6 @@ The following variables toggle policies on and off.  These can be set to `1` or 
 | `sqs_allowall`                   | Full access to SQS                                                                | `sqs.tf`           |
 | `ssm_get_params`                 | GetParameter for given SSM Parameters (requires `ssm_get_params_names`)           | `ssm.tf`           |
 | `ssm_managed`                    | Permissions required for managing an instance in SSM.  See note below.            | `ssm.tf`           |
-| `ssmparameter_allowall`          | Get and set all SSM Parameters                                                    | `ssm.tf`           |
 | `ssm_session_manager`            | Access to SSM Session Manager                                                     | `ssm.tf`           |
 | `sts_assumerole`                 | Allow the instance to assume IAM roles listed in sts_assumeroles                  | `sts.tf`           |
 | `sts_assumeroles`                | List of IAM role ARNs to allow the instance to assume.                            | `sts.tf`           |

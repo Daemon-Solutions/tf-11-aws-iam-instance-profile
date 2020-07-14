@@ -71,34 +71,6 @@ data "aws_iam_policy_document" "ssm_managed" {
   }
 }
 
-resource "aws_iam_role_policy" "ssm_parameter_allow_all" {
-  name   = "ssm_parameter_allow_all"
-  count  = var.ssmparameter_allowall && var.enabled ? 1 : 0
-  role   = aws_iam_role.default_role[0].id
-  policy = data.aws_iam_policy_document.ssm_parameter_allow_all[0].json
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-data "aws_iam_policy_document" "ssm_parameter_allow_all" {
-  count = var.ssmparameter_allowall && var.enabled ? 1 : 0
-
-  statement {
-    effect    = "Allow"
-    resources = ["*"]
-
-    actions = [
-      "ssm:DeleteParameter",
-      "ssm:DescribeParameter",
-      "ssm:GetParameter",
-      "ssm:GetParameters",
-      "ssm:PutParameter",
-    ]
-  }
-}
-
 resource "aws_iam_role_policy" "ssm_session_manager" {
   name   = "ssm_session_manager"
   count  = var.ssm_session_manager && var.enabled ? 1 : 0
