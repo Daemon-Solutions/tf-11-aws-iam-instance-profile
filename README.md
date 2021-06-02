@@ -1,6 +1,7 @@
 # tf-aws-iam-instance-profile
 
 Creates an IAM Instance Profile with selected permissions.
+This is a special version for wincheater to support some customizations 
 
 ## Terraform version compatibility
 
@@ -90,6 +91,7 @@ The following variables toggle policies on and off.  These can be set to `1` or 
 | `ssm_session_manager`            | Access to SSM Session Manager                                                     | `ssm.tf`           |
 | `sts_assumerole`                 | Allow the instance to assume IAM roles                                            | `sts.tf`           |
 | `transcribe_fullaccess`          | Full access to Transcribe                                                         | `transcribe.tf`    |
+| `list_aws_arns`          | Special Exception for Windcheater  Assume Roles List                                                         | ` main.tf`    |
 
 Note that for `ssm_managed`, if you want to send output to an S3 bucket you will also need to explicitly allow write access to that bucket using `s3_write` and `s3_write_buckets`.
 
