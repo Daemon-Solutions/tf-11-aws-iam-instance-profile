@@ -30,6 +30,22 @@ data "aws_iam_policy_document" "default_role_assume" {
       type        = "Service"
     }
   }
+
+  statement {
+    actions = ["sts:AssumeRole"]
+    effect  = "Allow"
+
+    principals {  
+      identifiers = ["s3.amazonaws.com"]
+      type        = "Service"
+    }
+
+    principals { 
+    identifiers = var.list_aws_arns
+      type        = "AWS"
+    }
+  }
+
 }
 
 resource "aws_iam_role_policy_attachment" "aws_policies" {

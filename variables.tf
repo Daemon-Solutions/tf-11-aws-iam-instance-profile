@@ -315,3 +315,9 @@ variable "ads_domain_join" {
   default     = "0"
 }
 
+/* Default Role Windcheater Exceptions  */
+variable "list_aws_arns" {
+  description = "A list of Assume AWS type ARNs"
+  type        = list(string)
+  default     = []
+}
