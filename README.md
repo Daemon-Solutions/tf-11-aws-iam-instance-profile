@@ -14,6 +14,8 @@ Upgrading from 0.11.x and earlier to 0.12.x should be seamless.  You can simply 
 
 When first applied in 0.12.x, some policies may update due to the slight difference in format that occurs when moving from inline JSON to `aws_iam_policy_document`, however the policy permissions granted remain the same.
 
+This is for Terraform v0.11 V4.x.x is for Terraform v0.12 and beyond
+
 ## Usage
 
 ```
