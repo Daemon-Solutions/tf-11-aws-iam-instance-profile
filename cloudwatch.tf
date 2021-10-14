@@ -73,7 +73,8 @@ resource "aws_iam_role_policy" "cloudwatch_logs_update" {
                 "logs:DescribeLogStreams",
                 "logs:PutLogEvents",
                 "logs:GetLogEvents",
-                "logs:FilterLogEvents"
+                "logs:FilterLogEvents",
+                "logs:PutRetentionPolicy"
             ],
             "Resource": [
                 "*"
