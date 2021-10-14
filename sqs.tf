@@ -1,20 +1,24 @@
 resource "aws_iam_role_policy" "sqs_allowall" {
-  name   = "sqs_allowall"
-  count  = var.sqs_allowall && var.enabled ? 1 : 0
-  role   = aws_iam_role.default_role[0].id
-  policy = data.aws_iam_policy_document.sqs_allowall[0].json
+  name  = "sqs_allowall"
+  count = "${var.sqs_allowall && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
   }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "sqs:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
 }
-
-data "aws_iam_policy_document" "sqs_allowall" {
-  count = var.sqs_allowall && var.enabled ? 1 : 0
-
-  statement {
-    actions   = ["sqs:*"]
-    effect    = "Allow"
-    resources = ["*"]
-  }
+EOF
 }

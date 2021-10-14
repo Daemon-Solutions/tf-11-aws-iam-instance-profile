@@ -1,24 +1,25 @@
 resource "aws_iam_role_policy" "elasticache_readonly" {
-  name   = "elasticache_readonly"
-  count  = var.elasticache_readonly && var.enabled ? 1 : 0
-  role   = aws_iam_role.default_role[0].id
-  policy = data.aws_iam_policy_document.elasticache_readonly[0].json
+  name  = "elasticache_readonly"
+  count = "${var.elasticache_readonly && var.enabled ? 1 : 0}"
+  role  = "${join("", aws_iam_role.default_role.*.id)}"
 
   lifecycle {
     create_before_destroy = true
   }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "elasticache:Describe*",
+        "elasticache:ListTagsForResource"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
 }
-
-data "aws_iam_policy_document" "elasticache_readonly" {
-  count = var.elasticache_readonly && var.enabled ? 1 : 0
-
-  statement {
-    effect    = "Allow"
-    resources = ["*"]
-
-    actions = [
-      "elasticache:Describe*",
-      "elasticache:ListTagsForResource"
-    ]
-  }
+EOF
 }

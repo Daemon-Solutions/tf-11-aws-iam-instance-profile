@@ -1,24 +1,25 @@
 resource "aws_iam_role_policy" "ads_domain_join" {
-  name   = "ads_domain_join"
-  count  = var.ads_domain_join && var.enabled ? 1 : 0
-  role   = aws_iam_role.default_role[0].id
-  policy = data.aws_iam_policy_document.ads_domain_join[0].json
+  name  = "ads_domain_join"
+  count = "${var.ads_domain_join}"
+  role  = "${aws_iam_role.default_role.id}"
 
   lifecycle {
     create_before_destroy = true
   }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ds:CreateComputer",
+        "ds:DescribeDirectories"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
 }
-
-data "aws_iam_policy_document" "ads_domain_join" {
-  count = var.ads_domain_join && var.enabled ? 1 : 0
-
-  statement {
-    effect    = "Allow"
-    resources = ["*"]
-
-    actions = [
-      "ds:CreateComputer",
-      "ds:DescribeDirectories"
-    ]
-  }
+EOF
 }
