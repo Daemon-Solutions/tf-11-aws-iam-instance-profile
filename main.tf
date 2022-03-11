@@ -35,13 +35,13 @@ data "aws_iam_policy_document" "default_role_assume" {
     actions = ["sts:AssumeRole"]
     effect  = "Allow"
 
-    principals {  
+    principals {
       identifiers = ["s3.amazonaws.com"]
       type        = "Service"
     }
 
-    principals { 
-    identifiers = var.list_aws_arns
+    principals {
+      identifiers = var.list_aws_arns
       type        = "AWS"
     }
   }
