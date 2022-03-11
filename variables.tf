@@ -77,6 +77,12 @@ variable "s3_readonly" {
   default     = "0"
 }
 
+variable "s3_readonly_name" {
+  description = "s3 readonly policy name"
+  type        = string
+  default     = "s3_readonly"
+}
+
 variable "s3_read_buckets" {
   description = "A list of s3 buckets to create read role policies on"
   type        = list(string)
@@ -89,6 +95,12 @@ variable "s3_write" {
   default     = "0"
 }
 
+variable "s3_write_name" {
+  description = "s3 write policy name"
+  type        = string
+  default     = "s3_write"
+}
+
 variable "s3_write_buckets" {
   description = "A list of s3 buckets to create write role policies on"
   type        = list(string)
@@ -99,6 +111,12 @@ variable "s3_writeonly" {
   description = "Bit indicating whether to create a role policy to allow write only access to a bucket"
   type        = string
   default     = "0"
+}
+
+variable "s3_writeonly_name" {
+  description = "s3 writeonly policy name"
+  type        = string
+  default     = "s3_writeonly"
 }
 
 variable "s3_writeonly_buckets" {
@@ -318,6 +336,19 @@ variable "ads_domain_join" {
 /* Default Role Windcheater Exceptions  */
 variable "list_aws_arns" {
   description = "A list of Assume AWS type ARNs"
+  type        = list(string)
+  default     = []
+}
+
+/* ECR Role Policies */
+variable "ecr_readonly" {
+  description = "Bit indicating whether to create a role policy to allow Listobjects in ECR"
+  type        = string
+  default     = "0"
+}
+
+variable "read_ecr_list" {
+  description = "A list of ECR resources create read role policies on"
   type        = list(string)
   default     = []
 }

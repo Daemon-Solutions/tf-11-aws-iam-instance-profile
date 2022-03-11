@@ -1,5 +1,5 @@
 resource "aws_iam_role_policy" "s3_readonly" {
-  name   = "s3_readonly"
+  name   = var.s3_readonly_name
   count  = var.s3_readonly && var.enabled ? 1 : 0
   role   = aws_iam_role.default_role[0].id
   policy = data.aws_iam_policy_document.s3_readonly[0].json
@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "s3_readonly" {
 }
 
 resource "aws_iam_role_policy" "s3_write" {
-  name   = "s3_write"
+  name   = var.s3_write_name
   count  = var.s3_write && var.enabled ? 1 : 0
   role   = aws_iam_role.default_role[0].id
   policy = data.aws_iam_policy_document.s3_write[0].json
@@ -53,7 +53,7 @@ data "aws_iam_policy_document" "s3_write" {
 }
 
 resource "aws_iam_role_policy" "s3_writeonly" {
-  name   = "s3_writeonly"
+  name   = var.s3_writeonly_name
   count  = var.s3_writeonly && var.enabled ? 1 : 0
   role   = aws_iam_role.default_role[0].id
   policy = data.aws_iam_policy_document.s3_writeonly[0].json
