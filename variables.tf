@@ -352,3 +352,15 @@ variable "read_ecr_list" {
   type        = list(string)
   default     = []
 }
+
+/* Secrets Manager Policies */
+variable "secrets_manager_read" {
+  description = "Bit indicating whether to create a role policy for access to the secrets_manager_read API"
+  type        = string
+  default     = "1"
+}
+variable "secrets_manager_read_list" {
+  description = "A List of Secrets Manager resources"
+  type        = list(string)
+  default     = []
+}
