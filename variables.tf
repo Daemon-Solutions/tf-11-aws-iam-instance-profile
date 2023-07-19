@@ -369,7 +369,7 @@ variable "secrets_manager_read_list" {
 variable "ecs_update" {
   description = "Bit indicating whether to create a role policy for update ECS"
   type        = string
-  default     = "1"
+  default     = "0"
 }
 variable "update_ecs_list" {
   description = "A List of ECS resources"
