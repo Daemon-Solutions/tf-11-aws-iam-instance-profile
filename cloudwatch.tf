@@ -38,10 +38,10 @@ data "aws_iam_policy_document" "cloudwatch_update" {
   count = var.cw_update && var.enabled ? 1 : 0
 
   statement {
-    actions   = [
-                "cloudwatch:Put*",
-                "cloudwatch:DeleteAlarms"
-                ]
+    actions = [
+      "cloudwatch:Put*",
+      "cloudwatch:DeleteAlarms"
+    ]
     effect    = "Allow"
     resources = ["*"]
   }
@@ -74,6 +74,7 @@ data "aws_iam_policy_document" "cloudwatch_logs_update" {
       "logs:FilterLogEvents",
       "logs:GetLogEvents",
       "logs:PutLogEvents",
+      "logs:PutRetentionPolicy",
     ]
   }
 }
