@@ -13,12 +13,12 @@ data "aws_iam_policy_document" "secrets_manager_read" {
   count = var.secrets_manager_read && var.enabled ? 1 : 0
 
   statement {
-    actions   = [
+    actions = [
       "secretsmanager:Describe*",
       "secretsmanager:Get*",
       "secretsmanager:List*",
     ]
-    effect    = "Allow"
+    effect = "Allow"
     resources = flatten([
       formatlist("%v", var.secrets_manager_read_list)
     ])
