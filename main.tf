@@ -39,10 +39,12 @@ data "aws_iam_policy_document" "default_role_assume" {
       identifiers = ["s3.amazonaws.com"]
       type        = "Service"
     }
-
-    principals {
-      identifiers = var.list_aws_arns
-      type        = "AWS"
+    dynamic "principals" {
+      for_each = length(var.list_aws_arns) > 0 ? [1] : []
+      content {
+        type        = "AWS"
+        identifiers = var.list_aws_arns
+      }
     }
   }
 
