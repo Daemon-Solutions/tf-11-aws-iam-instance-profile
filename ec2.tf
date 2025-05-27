@@ -19,6 +19,23 @@ data "aws_iam_policy_document" "ec2_describe" {
   }
 }
 
+data "aws_iam_policy_document" "recover_volume" {
+  count = var.recover_volume && var.enabled ? 1 : 0
+  statement {
+    actions = [
+      "ec2:CreateVolume",
+      "ec2:DescribeSnapshots",
+      "ec2:DescribeAvailabilityZones",
+      "ec2:DescribeVolumes",
+      "ec2:AttachVolume",
+      "ec2:DetachVolume",
+      "ec2:CreateTags"
+    ]
+    effect    = "Allow"
+    resources = ["*"]
+  }
+}
+
 resource "aws_iam_role_policy" "ec2_attach" {
   name   = "ec2_attach"
   count  = var.ec2_attach && var.enabled ? 1 : 0

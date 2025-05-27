@@ -376,3 +376,10 @@ variable "update_ecs_list" {
   type        = list(string)
   default     = []
 }
+
+
+variable "recover_volume" {
+  description = "Recover Volume from EBS Snapshot and attach or detach volume"
+  default     = "0"
+  type        = string
+}
