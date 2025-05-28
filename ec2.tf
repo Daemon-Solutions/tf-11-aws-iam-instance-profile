@@ -36,6 +36,17 @@ data "aws_iam_policy_document" "recover_volume" {
   }
 }
 
+resource "aws_iam_role_policy" "recover_volume" {
+  name   = "recover_volume"
+  count  = var.recover_volume && var.enabled ? 1 : 0
+  role   = aws_iam_role.default_role[0].id
+  policy = data.aws_iam_policy_document.recover_volume[0].json
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_iam_role_policy" "ec2_attach" {
   name   = "ec2_attach"
   count  = var.ec2_attach && var.enabled ? 1 : 0
